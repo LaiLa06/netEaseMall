@@ -129,8 +129,6 @@ class NavList extends React.Component {
         this.props.goodsData.length === 0 ? await queryInfo({type: 'all'}) : null;
         let goodsData = this.props.goodsData;
         let categoryData = queryCategory(goodsData, this.state.curType);
-        if(!this.props.categorys.length){
-            this.props.history.push('/home');return}
         this.setState({
             goodsData,
             categoryData
@@ -139,8 +137,9 @@ class NavList extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.categorys.length)this.changeMenu();
+        this.changeMenu();
     };
+
     render() {
         if (this.isHasType) return '';
         if (this.props.goodsData === 0) return '';
@@ -161,13 +160,9 @@ class NavList extends React.Component {
                                        onClick={() => {
                                            this.changeMenu(index);
                                            this.props.history.push(`/classify/navlist?type=${item}`);
-                                           let {queryCategory}=this.props;
-                                           queryCategory(this.props.goodsData, item);
                                            this.setState({
                                                curType: item
-                                           });
-
-
+                                           })
                                        }}>
                                 {classifyData[index]}
                             </li>;

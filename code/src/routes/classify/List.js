@@ -138,6 +138,7 @@ class List extends React.Component {
                 await this.props.queryInfo({type: 'all'});
                 goodsData = this.props.goodsData;
                 this.props.queryCategory(goodsData, this.state.search['type']);
+
             }
             this.setState({
                 goodsData
